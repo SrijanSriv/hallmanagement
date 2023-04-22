@@ -11,8 +11,13 @@ class HMCChairman(models.Model):
     
 
 class Hall(models.Model):
+    RoomType = [
+        ("old", "old"),
+        ("new", "new"),
+    ]
+
     _id = models.IntegerField(primary_key=True)
-    _type = models.CharField(max_length=10, null=False, blank=False)
+    _type = models.TextField(max_length=300, choices=RoomType, null=True, blank=True)
     name = models.CharField(max_length=100, null=False, blank=False)
     total_rooms = models.IntegerField(null=False, blank=False)
     rooms_available = models.IntegerField(null=False, blank=False)
