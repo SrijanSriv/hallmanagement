@@ -28,7 +28,7 @@ class HallsList(generics.views.APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class HallsDetail(generics.RetrieveAPIView):
-
+    serializer_class = HallSerializer
     def get_object(self, pk):
         try:
             return Hall.objects.get(_id=pk)
@@ -68,7 +68,7 @@ class StaffsList(generics.views.APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class StaffsDetail(generics.RetrieveAPIView):
-
+    serializer_class = StaffSerializer
     def get_object(self, pk):
         try:
             return Staff.objects.get(_id=pk)
@@ -108,7 +108,7 @@ class StudentsList(generics.views.APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class StudentsDetail(generics.RetrieveAPIView):
-
+    serializer_class = StudentSerializer
     def get_object(self, pk):
         try:
             return Student.objects.get(_id=pk)
@@ -149,7 +149,7 @@ class ComplaintsList(generics.views.APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ComplaintsDetail(generics.RetrieveAPIView):
-
+    serializer_class = ComplaintSerializer
     def get_object(self, pk):
         try:
             return Complaint.objects.get(_id=pk)
