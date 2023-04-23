@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ["django-server-production-b3bd.up.railway.app", '127.0.0.1', 'l
 # FORM SUBMISSION
 # Comment out the following line and place your railway URL, and your production URL in the array.
 CSRF_TRUSTED_ORIGINS = ["https://django-server-production-b3bd.up.railway.app", 'http://localhost:3000', 'https://hms-frontend-theta.vercel.app/', 'https://hms-frontend-git-abhi-abhi16.vercel.app/', 'https://hms-frontend-pxn6zl7iq-abhi16.vercel.app/']
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
 
 # Application definition
 
