@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ["django-server-production-b3bd.up.railway.app", '127.0.0.1', 'l
 # FORM SUBMISSION
 # Comment out the following line and place your railway URL, and your production URL in the array.
 CSRF_TRUSTED_ORIGINS = ["https://django-server-production-b3bd.up.railway.app", 'http://localhost:3000', 'https://hms-frontend-theta.vercel.app/', 'https://hms-frontend-git-abhi-abhi16.vercel.app/', 'https://hms-frontend-pxn6zl7iq-abhi16.vercel.app/']
-CORS_ALLOWED_ORIGINS = CSRF_TRUSTED_ORIGINS
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -46,10 +46,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'hallmanage.apps.HallmanageConfig',
     'rest_framework',
-
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
