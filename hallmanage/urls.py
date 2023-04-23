@@ -8,9 +8,9 @@ urlpatterns = [
     path('students/', StudentsList.as_view()),
     path('complaints/', ComplaintsList.as_view()),
     path('halls/<int:pk>/', HallsDetail.as_view()),
-    path('staffs/<int:pk>/', StaffsDetail.as_view()),
-    path('students/<int:pk>/', StudentsDetail.as_view()),
-    path('complaints/<int:pk>/', ComplaintsDetail.as_view()),
+    path('staffs/<str:pk>/', StaffsDetail.as_view()),
+    path('students/<str:pk>/', StudentsDetail.as_view()),
+    path('complaints/<str:pk>/', ComplaintsDetail.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
