@@ -35,15 +35,15 @@ class Staff(models.Model):
 
     _id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100, null=False, blank=False)
-    hall_no = models.ForeignKey(Hall, on_delete=models.CASCADE)
+    hall_no = models.ForeignKey('Hall', on_delete=models.CASCADE)
     position = models.TextField(max_length=300, choices=Roles, null=True, blank=True)
     salary = models.IntegerField(null=False, blank=False)
-
+    user_password= models.CharField(max_length=50, null=False, blank=False, default="user")
 
 
 class Room(models.Model):
     _id = models.IntegerField(primary_key=True)
-    hall_no = models.ForeignKey(Hall, on_delete=models.CASCADE)
+    hall_no = models.ForeignKey('Hall', on_delete=models.CASCADE)
     room_capacity = models.IntegerField()
     occupancy = models.IntegerField()
     cost = models.IntegerField()
@@ -54,8 +54,8 @@ class Student(models.Model):
     name = models.CharField(null=False, blank=False, max_length=50)
     address = models.CharField(null=False, blank=False, max_length=50)
     contact_no = models.CharField(null=False, blank=False, max_length=50)
-    hall_assigned = models.ForeignKey(Hall , on_delete=models.CASCADE)
-    room_assigned = models.ForeignKey(Room , on_delete=models.CASCADE)
+    hall_assigned = models.ForeignKey('Hall' , on_delete=models.CASCADE)
+    room_assigned = models.ForeignKey('Room' , on_delete=models.CASCADE)
     mess_charge = models.IntegerField()
     amenity_charge = models.IntegerField()
     room_rent = models.IntegerField()
@@ -64,5 +64,7 @@ class Student(models.Model):
 class Complaint(models.Model):
     _id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     description = models.CharField(max_length=1000)
-    student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
+    hall = models.ForeignKey('Hall', on_delete=models.CASCADE)
+    student_id = models.ForeignKey('Student', on_delete=models.CASCADE)
     is_resolved = models.BooleanField()
+    
