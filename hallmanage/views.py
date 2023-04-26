@@ -110,7 +110,7 @@ class StaffsDetail(generics.RetrieveAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @method_decorator(check_authentication())
-    def delete(self, request, pk, format=None):
+    def delete(self, request, pk, **kwargs):
         staff = self.get_object(pk)
         staff.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -138,6 +138,7 @@ class StudentsList(generics.views.APIView):
 
 class StudentsDetail(generics.RetrieveAPIView):
     serializer_class = StudentSerializer
+
     def get_object(self, pk):
         try:
             return Student.objects.get(_id=pk)
@@ -145,7 +146,7 @@ class StudentsDetail(generics.RetrieveAPIView):
             raise Http404
 
     @method_decorator(check_authentication())
-    def get(self, request, pk):
+    def get(self, request, pk, **kwargs):
         student = self.get_object(pk)
         serializer = StudentSerializer(student)
         return Response(serializer.data)
@@ -161,7 +162,7 @@ class StudentsDetail(generics.RetrieveAPIView):
 
 
     @method_decorator(check_authentication())
-    def delete(self, request, pk, format=None):
+    def delete(self, request, pk, **kwargs):
         student = self.get_object(pk)
         student.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -190,20 +191,20 @@ class ComplaintsList(generics.views.APIView):
 
 class ComplaintsDetail(generics.RetrieveAPIView):
     serializer_class = ComplaintSerializer
-    def get_object(self, pk):
+    def get_object(self, pk ):
         try:
             return Complaint.objects.get(_id=pk)
         except Complaint.DoesNotExist:
             raise Http404
 
     @method_decorator(check_authentication())
-    def get(self, request, pk):
+    def get(self, request, pk, **kwargs):
         complaint = self.get_object(pk)
         serializer = ComplaintSerializer(complaint)
         return Response(serializer.data)
 
     @method_decorator(check_authentication())
-    def put(self, request, pk):
+    def put(self, request, pk, **kwargs):
         complaint = self.get_object(pk)
         serializer = ComplaintSerializer(complaint, data=request.data)
         if serializer.is_valid():
@@ -212,7 +213,7 @@ class ComplaintsDetail(generics.RetrieveAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @method_decorator(check_authentication())
-    def delete(self, request, pk, format=None):
+    def delete(self, request, pk, **kwargs):
         complaint = self.get_object(pk)
         complaint.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
